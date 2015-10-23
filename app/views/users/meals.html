@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Meals History</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  	<style>
+  	  a {
+        color: black;
+      }
+      .logout {
+        text-align: right;
+        padding-top: 10px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .menu {                
+        text-align: center;
+      }
+      .menu_link {
+        padding-right: 40px;
+        font-size: 20px;
+      }
+      body {
+        background-image: url('/static/mc.png');
+        background-position: center top;
+        background-size: 1000px;
+        background-repeat: no-repeat;
+      }
+  	</style>
+  </head>
+    <body>
+      <div class = 'container-fluid'>
+        <div class = 'logout'>
+          <a id = 'logout' href = '/logout'>Logout</a>
+        </div>      
+      	<h1>Meal History</h1>      
+        <br>
+        <div class = 'menu'>
+          <a class = 'menu_link' href = '/success'>Home</a>
+          <a class = 'menu_link' href = '/menu/{{session['id']}}'>Menu</a>
+          <a class = 'menu_link' href = '/meals/{{session['id']}}'>Meals</a>
+          <a class = 'menu_link' href = '/weight/{{session['id']}}'>Weight</a>
+        </div>
+        <br>
+        <table class = 'table table-hover'>
+              <tr>
+                <th>Date</th>
+                <th>Total Calories Consumed</th>
+                <th>Total Calorie Deficit</th>
+              </tr>
+              {% for meal in meals: %}
+              <tr>
+                <td>{{meal['created_at']}}</td>
+                <td>{{meal['total_calories']}}</td>
+                <td>{{meal['calorie_deficit']}}</td>
+              </tr>
+              {% endfor %}
+        </table>
+      </div>
+    </body>
+</html>

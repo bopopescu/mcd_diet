@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Home</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  	<style>
+  	  a {
+        color: black;
+      }
+      .logout {
+        text-align: right;
+        padding-top: 10px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .menu, .content {                
+        text-align: center;
+      }
+      .content {
+        padding-top: -15px;
+        padding-bottom: 20px;
+        padding-right: 10px;
+        padding-left: 10px;
+        border: solid 1px;
+        margin-left: 450px;
+        margin-right: 450px;
+      }
+      .menu_link {
+        padding-right: 40px;
+        font-size: 20px;
+      }
+      body {
+        background-image: url('/static/mc.png');
+        background-position: center top;
+        background-size: 1000px;
+        background-repeat: no-repeat;
+      }
+  	</style>
+  </head>
+    <body>
+      <div class = 'container-fluid'>
+        <div class = 'logout'>
+          <a id = 'logout' href = '/logout'>Logout</a>
+        </div>
+        {% for user in users: %}
+      	<h1>Welcome {{session['first']}}! You currently burn approximately {{user['calories_threshold']}} calories per day.</h1>
+        {% endfor %}        
+        <br>        
+        <div class = 'menu'>
+          <a class = 'menu_link' href = '/success'>Home</a>
+          <a class = 'menu_link' href = '/menu/{{session[ 'id' ]}}'>Menu</a>
+          <a class = 'menu_link' href = '/meals/{{session[ 'id' ]}}'>Meals</a>
+          <a class = 'menu_link' href = '/weight/{{session[ 'id' ]}}'>Weight</a>
+        </div>
+        <br>
+        <div class = 'content'>
+          <h3>McDonald's Menu</h3>
+            <p>Click on the Menu link above to view McDonald Menu Items and to select your meals for the day.  Once your daily meals are added, the total calories consumed and calorie deficit will be stored in your Meal History.  <strong>Please note that you may only add your daily meals once per day.</strong></p>
+          <h3>Meal History</h3>
+            <p>Click on the Meal link above to view your Meal History.  Your Meal History will display the total calories consumed and calorie deficit on any particular day.  The calorie deficit is the total calories you consume less the total calories burned.  One pound is approximately 3,500 calories, a total calorie deficit of 3,500 is equivalent to the loss of one pound.</p>
+          <h3>Weight History</h3>
+            <p>Click on the Weight link above to view your Weight History and update your current weight.  When updating your weight, the estimate for the amount of calories you burn per day will also be updated.</p>
+        </div>
+      </div>
+    </body>
+</html>
